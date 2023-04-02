@@ -93,7 +93,7 @@ def add_company_tg(for_regex, companies):
     if '.DS_Store' in files:
         files.remove('.DS_Store')
     for file in files:
-        df = pd.read_csv(f'Telegram prep/{file}', low_memory=False)
+        df = pd.read_csv(f'Telegram prep/{file}')
         for company in companies:
             reg = for_regex[company]
             reg = ' | '.join(reg)
@@ -121,7 +121,7 @@ def add_industry_tg(companies, for_regex_industry):
     if '.DS_Store' in files:
         files.remove('.DS_Store')
     for file in files:
-        df = pd.read_csv(f'Telegram prep/{file}', low_memory=False)
+        df = pd.read_csv(f'Telegram prep/{file}')
         for industry in industries:
             reg = for_regex_industry[industry]
             reg = ' | '.join(reg)
@@ -194,8 +194,7 @@ def add_target_bin_tg():
             print(f'{com} готов')
         df.to_csv(f'Telegram prep/{file[:-13]}.csv', index=False)
 
- 
- 
+        
 def add_target(root):
     cols = ['1 мин.', '5 мин.', '10 мин.', '15 мин.', '30 мин.', '1 час', '1 день']
     times = [pd.Timedelta(1, unit='min'), pd.Timedelta(5, unit='min'), pd.Timedelta(10, unit='min'),
@@ -230,6 +229,7 @@ def add_target(root):
         print(f'{com} готов')
     df.to_csv(f'{root}/{root}.csv', index=False)
 
+    
 def add_target_bin(root):
     cols = ['1 мин.', '5 мин.', '10 мин.', '15 мин.', '30 мин.', '1 час', '1 день']
     times = [pd.Timedelta(1, unit='min'), pd.Timedelta(5, unit='min'), pd.Timedelta(10, unit='min'),
